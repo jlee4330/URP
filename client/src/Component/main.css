@@ -1,4 +1,4 @@
-.outside {
+.container {
     display:flex;
     justify-content: space-between;
     background-color: #f4f4f4;
@@ -12,9 +12,36 @@
   }
 
 .left-side {
-    /* 필요한 추가 스타일링 */
+   
   }
   
 .right-side {
+    background-color: antiquewhite;
     /* 필요한 추가 스타일링 */
   }
+
+.topbarcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+    background-color: #D9D9D9;
+    padding: 8px;
+    border-radius: 10px;
+
+
+}
+
+
+.page-pi,.page-goals,.page-si {
+    padding: 10px 15px;
+    /* Adjust padding to control the height and width */
+    flex: 1;
+    /* Makes both buttons take up equal space in the container */
+    border: grey;
+    margin-right: 5px;
+    /* Right margin for the left button only */
+    border-radius: 10px;
+}
+
+
