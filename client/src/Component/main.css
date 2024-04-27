@@ -1,0 +1,20 @@
+.outside {
+    display:flex;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    
+}
+
+.left-side, .right-side {
+    flex: 1; /* flex 아이템들이 동일한 비율로 공간 차지 */
+    height: 100vh; /* 전체 화면 높이 */
+    overflow: auto; /* 내용이 많을 경우 스크롤 가능하도록 설정 */
+  }
+
+.left-side {
+    /* 필요한 추가 스타일링 */
+  }
+  
+.right-side {
+    /* 필요한 추가 스타일링 */
+  }
