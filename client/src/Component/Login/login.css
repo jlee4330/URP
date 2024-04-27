@@ -1,105 +1,97 @@
-
-.signholder {
-    margin: auto;
-    width: 847px;
-    
-  
+body,
+html {
+    height: 100%;
+    /* This makes sure that the HTML and body tags take up the full height of the viewport */
+    margin: 0;
+    /* Removes the default margin provided by browsers */
+    display: flex;
+    /* Enables flexbox */
+    justify-content: center;
+    /* Centers content horizontally */
+    align-items: center;
+    /* Centers content vertically */
+    background-color: #f4f4f4;
+    /* Optional: sets a background color */
 }
 
-.signinbox {
+.signholder {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin-bottom: 24px;
-    
-    height: 280px;
-    border-radius: 4px;
-    border: solid 1px #c8c8c8;
-    background-color: white;
-}
-
-.signinTitle {
-    font-size: 44px;
-    font-weight: 500;
-    color: #6E6D70;
-    margin: 97px 0 30px;
-    
-}
-
-.signInput {
-    width: 704px;
-    height: 82px;
+    padding: 80px 150px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    /* Optional: Adds a shadow for better visibility */
+    background: white;
+    /* Optional: sets a background color for the signholder */
     border-radius: 10px;
-    margin-top: 57px;
-    border: solid 1px #c8c8c8;
-}
-
-.loginBtn {
-    width: 158px;
-    height: 52px;
-    margin-top: 10px;
-
-    border-radius: 10px;
-
-    font-size: 28px;
-    background-color: #6E6D70;
-    color: white;
-}
-
-.loginBtn:hover {
-    background-color: #00A490;
-}
-
-.createAccountbox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    margin: auto;
-    
-    height: 60px;
-    border-radius: 4px;
-    border: solid 1px #c8c8c8;
-    background-color: white;
-
-    font-size: 14px;
-}
-
-.createAccountbox > button {
-    border: none;
-    background-color: white;
-
-    font-size: 14px;
-    font-weight: 700;
-    color: #00B7A1;
+    /* Optional: rounds the corners */
 }
 
 .signupbox {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-
-    margin-bottom: 24px;
-
-    height: 592px;
-
-    border-radius: 20px;
-    border: solid 1px #c8c8c8;
-    background-color: white;
+    width: 100%;
+    /* Adjust width as needed */
 }
 
-input::placeholder {
-    color: #ACACAC;
-    font-size: 28px;
-    /*font-style: italic;
-    */
-    text-indent: 32px; 
-    
-  }
+.signInput {
 
-  .buttonContainer {
-    text-align: right;
-  }
+    padding: 10px 15px;
+    /* Adds padding for aesthetics */
+    margin-bottom: 20px;
+    /* Adds a bottom margin for spacing */
+    border: 0.1px solid #ccc ;
+    border-radius: 4px;
+
+
+    /* Rounds the corners of inputs and buttons */
+}
+
+
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* This will place a bit of space between the two buttons */
+}
+
+.loginBtn,
+.signBtn {
+    padding: 7px 15px;
+    /* Adjust padding to control the height and width */
+    flex: 1;
+    /* Makes both buttons take up equal space in the container */
+    border: grey;
+    margin-right: 5px;
+    /* Right margin for the left button only */
+    border-radius: 4px;
+}
+
+.signBtn {
+    margin-right: 0;
+    /* Removes the right margin for the rightmost button */
+}
+
+
+
+.loginBtn:hover {
+    background-color: #00a49192;
+}
+
+.signBtn:hover {
+    background-color: #00a49192;;
+}
+
+
+.signinTitle {
+    font-size: 30px ;
+    /* Adjust the size as needed */
+    margin-bottom: 30px;
+    /* Adds space below the title */
+    text-align: center;
+    /* Centers the text */
+    font-weight: 450;
+}
+
+
