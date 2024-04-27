@@ -1,0 +1,105 @@
+
+.signholder {
+    margin: auto;
+    width: 847px;
+    
+  
+}
+
+.signinbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 24px;
+    
+    height: 280px;
+    border-radius: 4px;
+    border: solid 1px #c8c8c8;
+    background-color: white;
+}
+
+.signinTitle {
+    font-size: 44px;
+    font-weight: 500;
+    color: #6E6D70;
+    margin: 97px 0 30px;
+    
+}
+
+.signInput {
+    width: 704px;
+    height: 82px;
+    border-radius: 10px;
+    margin-top: 57px;
+    border: solid 1px #c8c8c8;
+}
+
+.loginBtn {
+    width: 158px;
+    height: 52px;
+    margin-top: 10px;
+
+    border-radius: 10px;
+
+    font-size: 28px;
+    background-color: #6E6D70;
+    color: white;
+}
+
+.loginBtn:hover {
+    background-color: #00A490;
+}
+
+.createAccountbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin: auto;
+    
+    height: 60px;
+    border-radius: 4px;
+    border: solid 1px #c8c8c8;
+    background-color: white;
+
+    font-size: 14px;
+}
+
+.createAccountbox > button {
+    border: none;
+    background-color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: #00B7A1;
+}
+
+.signupbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    margin-bottom: 24px;
+
+    height: 592px;
+
+    border-radius: 20px;
+    border: solid 1px #c8c8c8;
+    background-color: white;
+}
+
+input::placeholder {
+    color: #ACACAC;
+    font-size: 28px;
+    /*font-style: italic;
+    */
+    text-indent: 32px; 
+    
+  }
+
+  .buttonContainer {
+    text-align: right;
+  }
