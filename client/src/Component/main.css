@@ -16,10 +16,9 @@
   /* 내용이 많을 경우 스크롤 가능하도록 설정 */
 }
 
-.left-side {}
 
 .right-side {
-  background-color: rgb(216, 216, 216);
+  background-color: #ffffff;
   /* 필요한 추가 스타일링 */
 }
 
@@ -30,7 +29,7 @@
   margin-top: 30px;
   background-color: #D9D9D9;
   padding: 8px;
-  border-radius: 10px;
+  
 
 
 }
@@ -52,9 +51,9 @@
   flex-direction: row;
   justify-content: flex-start;
   margin-top: 30px;
-  background-color: #e82929;
+  background-color: #D9D9D9;
   padding: 8px;
-  border-radius: 10px;
+  
 }
 
 
@@ -83,15 +82,16 @@
 
 .fixInput {
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-top: 8%;
   /* This will vertically center align items */
 }
 
 .profilePic {
-  width: 25%;
+  width: 20%;
   /* This sets the width of the picture */
-  height: 25%;
+  height: 20%;
   /* This sets the height of the picture to be the same as the width to maintain aspect ratio */
   border-radius: 50%;
   /* This will make the div circular */
@@ -113,51 +113,96 @@
 
 .nameTitle {
   text-align: left;
+  margin-left: 5%;
   /* Aligns the title and input in a column */
 }
 
 .nameInput {
   /* Your styles for name input here */
-  margin-top: 0px;
-  padding: 10px 80px;
-  border: 0.5px solid #f4f4f4;
   text-align: left;
+  
+  border: 0.5px solid #f4f4f4;
+  padding: 12px;
   border-radius: 10px;
+  width: 93%;
   /* Adds a little space between the title and the input */
 }
 
-.instruction {
+.instructionName {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
   text-align: left;
+  margin-left: 5%;
+  
+
   /* This is the correct property to align text to the left */
 
 }
 
 .instructionInput {
-
-  text-align: left;
-  /* Aligns the text inside the input to the left */
+  text-align: left; /* Aligns text to the left */
   background-color: white;
   border: 0.5px solid #f4f4f4;
-
-  /* A fixed padding value */
   border-radius: 10px;
-  width: 95%;
-  height: 500px;
-
-  /* Makes the input stretch to the full width of its container */
-  box-sizing: border-box;
-  /* Includes padding and border in the element's total width and height */
+  width: 96%;
+  height: 350px;
+  padding: 12px; /* Adjust padding as needed */
+  resize: none; /* Prevents resizing the textarea */
+  overflow: auto; /* Adds a scrollbar if the text overflows */
+  line-height: normal; /* Adjusts the spacing between lines */
+  box-sizing: border-box; /* Includes padding and border in the width and height */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.instructionInput::placeholder {
-  position: absolute;
-  left: 12px;
-  top: 5%;
-  transform: translateY(-50%);
-  width: calc(100% - 24px);
-  color: #aaa;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.bottom{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 4%;
+  margin-top: 10px;
+}
 
+.saveBtn {
+  background-color: #6e6d6d;
+  padding: 5px 20px;
+  color: white;
+  border: none;
+  border-radius: 7px;
+}
+
+.inputAndSend {
+  
+  display: flex;
+  margin-top: 87%;
+  justify-content: center;
+
+
+}
+
+
+.send {
+  background-color: #6e6d6d;
+  padding: 5px 20px;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  margin-left: 1%;
+  
+}
+
+
+.inputContainer {
+  width: 85%;
+
+  padding: 15px;
+  /* Adds padding inside the input for better text visibility */
+  font-size: 16px;
+  /* Increases the font size for better readability */
+
+  background-color: #f3f3f3;
+  /* Changes the background color */
+  border: none;
+  /* Removes the border */
+  border-radius: 10px;
+  /* Adds rounded corners to the input box */
 }

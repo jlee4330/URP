@@ -32,21 +32,29 @@ export const MainPage = () => {
                     <div className="fixInput">
                             <div className="profilePic">
                                 <img src={profilePic} alt="Profile" />
-
                             </div>
+                    </div>
 
-                            <div className='nameTitle'>
+                        <div className='nameTitle'>
                                 <h4>Name</h4>
                                 <input className='nameInput' placeholder={'Name your digital clone'} ></input>
-                            </div>
                         </div>
 
-                        <div className='"instruction'>
-                            <div className='instuctionName'>
-                                <h4>Instruction</h4>
-                                <input className='instructionInput' placeholder={'Design your digital clone. How does it behave? What should it avoid?'}></input>
+                        <div className='bottom'> 
+                            <button className='saveBtn' type="submit">Save</button>
+                        </div>
 
+
+
+                        <div className='"instruction'>
+                            <div className='instructionName'>
+                                <h4> Instruction </h4>
+                                <textarea className='instructionInput' placeholder={'Design your digital clone. How does it behave? What should it avoid?'}></textarea>
+                                
                             </div>
+                        <div className='bottom'> 
+                            <button className='saveBtn' type="submit">Save</button>
+                        </div>
 
 
 
@@ -82,36 +90,79 @@ export const MainPage = () => {
                 </div>
 
                 <div id="Tab4" className={`tabcontent ${activeRightTab === 'Tab4' ? 'active' : ''}`}>
-                    <h3>Trial</h3>
-                    <p>This is the content for Tab 1.</p>
+                    <h4>Trial Chat</h4>
+                    <div className='inputAndSend'>
+                        <input className='inputContainer' placeholder={'Chat with your clone'} ></input>
+                        <button className='send' type="submit">Send</button>
+                    </div>
                 </div>
+
                 <div id="Tab5" className={`tabcontent ${activeRightTab === 'Tab5' ? 'active' : ''}`}>
-                    <h3>Goals</h3>
-                    <p>This is the content for Tab 2.</p>
+                    <h4>Day 1 Chat</h4>
+                    <div className='inputAndSend'>
+                        <input className='inputContainer' placeholder={'Chat with your clone'} ></input>
+                        <button className='send' type="submit">Send</button>
+                    </div>
                 </div>
+
                 <div id="Tab6" className={`tabcontent ${activeRightTab === 'Tab6' ? 'active' : ''}`}>
-                    <h3>Secret Information</h3>
-                    <p>This is the content for Tab 3.</p>
+                    <h4>Day 2 Chat</h4>
+                    <div className='inputAndSend'>
+                        <input className='inputContainer' placeholder={'Chat with your clone'} ></input>
+
+                        <button className='send' type="submit">Send</button>
+                    </div>
                 </div>
+
                 <div id="Tab7" className={`tabcontent ${activeRightTab === 'Tab7' ? 'active' : ''}`}>
-                    <h3>Trial</h3>
-                    <p>This is the content for Tab 1.</p>
+                    <h4>Day 3 Chat</h4>
+                    <div className='inputAndSend'>
+
+                        <input className='inputContainer' placeholder={'Chat with your clone'} ></input>
+
+                        <button className='send' type="submit">Send</button>
+                    </div>
                 </div>
+
+
                 <div id="Tab8" className={`tabcontent ${activeRightTab === 'Tab8' ? 'active' : ''}`}>
-                    <h3>Goals</h3>
-                    <p>This is the content for Tab 2.</p>
+                    <h4>Day 4 Chat</h4>
+                    <div className='inputAndSend'>
+                        <input className='inputContainer' placeholder={'Chat with your clone'} ></input>
+                        <button className='send' type="submit">Send</button>
+                    </div>
                 </div>
+
+
                 <div id="Tab9" className={`tabcontent ${activeRightTab === 'Tab9' ? 'active' : ''}`}>
-                    <h3>Secret Information</h3>
-                    <p>This is the content for Tab 3.</p>
+                    <h4>Day 5 Chat</h4>
+                    <div className='inputAndSend'>
+
+                        <input className='inputContainer' placeholder={'Chat with your clone'} ></input>
+
+                        <button className='send' type="submit">Send</button>
+                    </div>
                 </div>
+
                 <div id="Tab10" className={`tabcontent ${activeRightTab === 'Tab10' ? 'active' : ''}`}>
-                    <h3>Secret Information</h3>
-                    <p>This is the content for Tab 3.</p>
+                    <h4>Day 6 Chat</h4>
+                    <div className='inputAndSend'>
+
+                        <input className='inputContainer' placeholder={'Chat with your clone'} ></input>
+
+                        <button className='send' type="submit">Send</button>
+                    </div>
                 </div>
+
+
                 <div id="Tab11" className={`tabcontent ${activeRightTab === 'Tab11' ? 'active' : ''}`}>
-                    <h3>Secret Information</h3>
-                    <p>This is the content for Tab 3.</p>
+                    <h4>Day 7 Chat</h4>
+                    <div className='inputAndSend'>
+
+                        <input className='inputContainer' placeholder={'Chat with your clone'} ></input>
+
+                        <button className='send' type="submit">Send</button>
+                    </div>
                 </div>
 
 
