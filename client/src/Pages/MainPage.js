@@ -5,6 +5,7 @@ import profilePic from '/Users/donggunlee/Desktop/CloneBuilder/URP/client/src/ì
 export const MainPage = () => {
     const [activeLeftTab, setActiveLeftTab] = useState('Tab1');
     const [activeRightTab, setActiveRightTab] = useState('Tab4');
+    
 
 
     const openLeftTab = (tabName) => {
@@ -61,18 +62,45 @@ export const MainPage = () => {
                     </div>
 
 
-
-
-
-
                 </div>
                 <div id="Tab2" className={`tabcontent ${activeLeftTab === 'Tab2' ? 'active' : ''}`}>
-                    <h3>Goals</h3>
-                    <p>This is the content for Tab 2.</p>
+                    <div className='goalpage'>
+                            <h4> Goals</h4>
+                            <input className='goalInput' placeholder={'#1 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#2 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#3 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#4 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#5 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#6 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#7 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#8 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#9 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' placeholder={'#10 Set your personalized goals for creating your digital clone'} ></input>
+
+                    </div>
+
+                    <div className='bottom'> 
+                            <   button className='saveBtn' type="submit">Save</button>
+                            </div>
+
+
+
+
                 </div>
+
+
                 <div id="Tab3" className={`tabcontent ${activeLeftTab === 'Tab3' ? 'active' : ''}`}>
-                    <h3>Secret Information</h3>
-                    <p>This is the content for Tab 3.</p>
+                    <div className='secretName'>
+                                <h4> Secret Information </h4>
+                                <textarea className='secretInput' placeholder={'The information here will not be shared to the researchers.'}></textarea>
+                                
+                            </div>
+                        <div className='bottom'> 
+                            <button className='saveBtn' type="submit">Save</button>
+                        </div>
+
+
+
                 </div>
             </div>
 
