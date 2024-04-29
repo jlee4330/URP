@@ -242,8 +242,12 @@
   margin-top: 2.5%;
 }
 
+.tablinks {
+  opacity: 40%;
+}
+
 .tablinks.active {
-  background-color: #00a49192;
+  opacity: 100%;
 }
 
 .goalInput {
