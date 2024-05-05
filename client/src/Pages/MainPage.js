@@ -1,11 +1,45 @@
 import React, { useState } from 'react';
-import '/Users/donggunlee/Desktop/CloneBuilder/URP/client/src/Component/main.css';
-import profilePic from '/Users/donggunlee/Desktop/CloneBuilder/URP/client/src/이수연.jpeg';
+import axios from 'axios';
+import '../Component/main.css';
+import profilePic from '../이수연.jpeg';
 
 export const MainPage = () => {
     const [activeLeftTab, setActiveLeftTab] = useState('Tab1');
     const [activeRightTab, setActiveRightTab] = useState('Tab4');
-    
+
+    const [goals,setGoals] = useState(["연습","q","","","","","","","",""]);
+
+
+    function saveGoals(){
+        axios({
+            method: "POST",
+            url: "http://127.0.0.1:5000/saveGoals",
+            data: {goals:goals},
+            
+            
+        })
+        .then((resonse) => {
+
+        } )
+
+        .catch((error) => {
+        
+        if (error.response){
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+
+
+
+        }
+
+
+        })
+        console.log("click!")
+
+
+    };
+
 
 
     const openLeftTab = (tabName) => {
@@ -66,21 +100,21 @@ export const MainPage = () => {
                 <div id="Tab2" className={`tabcontent ${activeLeftTab === 'Tab2' ? 'active' : ''}`}>
                     <div className='goalpage'>
                             <h4> Goals</h4>
-                            <input className='goalInput' placeholder={'#1 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#2 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#3 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#4 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#5 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#6 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#7 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#8 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#9 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' placeholder={'#10 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[0]} placeholder={'#1 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[1]} placeholder={'#2 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[2]} placeholder={'#3 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[3]} placeholder={'#4 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[4]} placeholder={'#5 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[5]} placeholder={'#6 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[6]} placeholder={'#7 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[7]} placeholder={'#8 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[8]} placeholder={'#9 Set your personalized goals for creating your digital clone'} ></input>
+                            <input className='goalInput' value={goals[9]} placeholder={'#10 Set your personalized goals for creating your digital clone'} ></input>
 
                     </div>
 
                     <div className='bottom'> 
-                            <   button className='saveBtn' type="submit">Save</button>
+                            <   button className='saveBtn' onClick={saveGoals}  type="submit">Save</button>
                             </div>
 
 
