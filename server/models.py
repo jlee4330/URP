@@ -8,8 +8,10 @@ class User(UserMixin, db.Model):
     realPassword = db.Column(db.String(100))
     name = db.Column(db.String(1000))
 
-# class Goals(db.Model):
-#     goals = db.Column(db.JSON)
+class Goals(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    goals = db.Column(db.JSON)
+
 
 
 # class Note(db.Model):
