@@ -1,14 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import '../Component/main.css';
 import profilePic from '../이수연.jpeg';
 import { Goal } from '../Component/Goal/Goal';
 
+
 export const MainPage = () => {
     const [activeLeftTab, setActiveLeftTab] = useState('Tab1');
     const [activeRightTab, setActiveRightTab] = useState('Tab4');
 
-    const [goals,setGoals] = useState(["연습","q","","","","","","","",""]);
+
+    const [goals,setGoals] = useState(["","","","","","","","","",""]);
+
+
+    function getGoals() {
+        axios({
+            method: "GET",
+            url: "http://127.0.0.1:5000/getGoals"
+        })
+        .then((response) => {
+            const res = response.data
+            setGoals(
+                res.goals
+            )
+        } )
+        .catch((error) => {
+        if (error.response){
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+        }
+        })
+    }
+    
+
+    useEffect(()=> { 
+        getGoals();
+    }, []);
 
     const updateGoal = (i,newgoal) => {
         setGoals(goals => {
@@ -17,9 +45,8 @@ export const MainPage = () => {
             updateGoals[i] = newgoal;
             return updateGoals;
         })
-
-
-    }
+       
+    };
 
 
 
