@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../Component/main.css';
 import profilePic from '../이수연.jpeg';
+import { Goal } from '../Component/Goal/Goal';
 
 export const MainPage = () => {
     const [activeLeftTab, setActiveLeftTab] = useState('Tab1');
@@ -9,52 +10,49 @@ export const MainPage = () => {
 
     const [goals,setGoals] = useState(["연습","q","","","","","","","",""]);
 
+    const updateGoal = (i,newgoal) => {
+        setGoals(goals => {
+            
+            const updateGoals = [...goals];
+            updateGoals[i] = newgoal;
+            return updateGoals;
+        })
 
+
+    }
+
+
+
+
+
+//    서버로 보내는 코드 
     function saveGoals(){
         axios({
             method: "POST",
             url: "http://127.0.0.1:5000/saveGoals",
-            data: {goals:goals},
-            
-            
+            data: {goals:goals}, 
         })
-        .then((resonse) => {
-
+        .then((response) => {
         } )
-
         .catch((error) => {
-        
         if (error.response){
             console.log(error.response)
             console.log(error.response.status)
             console.log(error.response.headers)
-
-
-
         }
-
-
         })
         console.log("click!")
-
-
     };
-
-
 
     const openLeftTab = (tabName) => {
         setActiveLeftTab(tabName);
-    
     };
     
     const openRightTab = (tabName) => {
         setActiveRightTab(tabName);
-    
-    
     };
 
     return (
-
         <div className='mainPage'>
             <div className='left-side'>
                 <div className="leftTopTab">
@@ -100,16 +98,19 @@ export const MainPage = () => {
                 <div id="Tab2" className={`tabcontent ${activeLeftTab === 'Tab2' ? 'active' : ''}`}>
                     <div className='goalpage'>
                             <h4> Goals</h4>
-                            <input className='goalInput' value={goals[0]} placeholder={'#1 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[1]} placeholder={'#2 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[2]} placeholder={'#3 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[3]} placeholder={'#4 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[4]} placeholder={'#5 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[5]} placeholder={'#6 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[6]} placeholder={'#7 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[7]} placeholder={'#8 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[8]} placeholder={'#9 Set your personalized goals for creating your digital clone'} ></input>
-                            <input className='goalInput' value={goals[9]} placeholder={'#10 Set your personalized goals for creating your digital clone'} ></input>
+                        
+                            <Goal num={1} prevGoal = {goals[0]} updateGoal = {(newgoal) => updateGoal(0,newgoal)} />
+                            <Goal num={2} prevGoal = {goals[1]} updateGoal = {(newgoal) => updateGoal(1,newgoal)} /> 
+                            <Goal num={3} prevGoal = {goals[2]} updateGoal = {(newgoal) => updateGoal(2,newgoal)} />  
+                            <Goal num={4} prevGoal = {goals[3]} updateGoal = {(newgoal) => updateGoal(3,newgoal)} /> 
+                            <Goal num={5} prevGoal = {goals[4]} updateGoal = {(newgoal) => updateGoal(4,newgoal)} /> 
+                        
+                            {goals[0]}
+                            {goals[1]}
+                            {goals[2]}
+                            {goals[3]}
+                            {goals[4]}
+                           
 
                     </div>
 

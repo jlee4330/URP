@@ -1,0 +1,21 @@
+import React, { useState } from 'react';
+
+
+
+export const Goal = ({num,prevGoal,updateGoal}) => {
+    
+    const [goal,setGoal] = useState(prevGoal);
+    
+    const handleTextChange = (event) => {
+
+        setGoal(event.target.value);
+        updateGoal(event.target.value)
+
+    }
+    
+    return(
+        <>
+        <input className='goalInput' key = {num}  value={goal} onChange={handleTextChange} placeholder={ "#" + num +  ' Set your personalized goals for creating your digital clone'} ></input>
+        </>
+    );
+}
