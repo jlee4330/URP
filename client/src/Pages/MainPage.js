@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../Component/main.css';
 import profilePic from '../이수연.jpeg';
 import { Goal } from '../Component/Goal/Goal';
+import { SecretInfo } from '../Component/secretInfo/SecretInfo';
 
 
 export const MainPage = () => {
@@ -11,7 +12,7 @@ export const MainPage = () => {
 
 
     const [goals,setGoals] = useState(["","","","","","","","","",""]);
-
+    const [secrets,setSecrets] = useState([""]);
 
     function getGoals() {
         axios({
@@ -33,10 +34,39 @@ export const MainPage = () => {
         })
     }
     
+    // 데이터베이스에 저장하는 법 
+    function getSecrets() {
+        axios({
+            method: "GET",
+            url: "http://127.0.0.1:5000/getSecrets"
+            // getSecrets 함수를 main.py에서 만들어야돼 
+        })
+        .then((response) => {
+            const res = response.data
+            setSecrets(
+                res.secrets
+            )
+        } )
+        .catch((error) => {
+        if (error.response){
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+        }
+        })
+    }
+
 
     useEffect(()=> { 
         getGoals();
     }, []);
+
+
+
+    useEffect(()=> { 
+        getSecrets();
+    }, []);
+
 
     const updateGoal = (i,newgoal) => {
         setGoals(goals => {
@@ -47,6 +77,20 @@ export const MainPage = () => {
         })
        
     };
+
+
+    const updateSecret = (i,newsecret) => {
+        setSecrets(secrets => {
+
+                const updateSecrets = [...secrets];
+                updateSecrets[i] = newsecret;
+                return updateSecrets;
+
+        })
+    };
+
+    
+
 
 
 
@@ -68,8 +112,33 @@ export const MainPage = () => {
             console.log(error.response.headers)
         }
         })
-        console.log("click!")
+        console.log("click1!")
     };
+
+    function saveSecret(){
+        axios({
+            method: "POST",
+            url: "http://127.0.0.1:5000/saveSecret", 
+            // main.py에 saveSecret 함수를 만들어야함
+            data: {secrets:secrets},
+        })
+        .then((response) => {
+        } )
+        .catch((error) => {
+        if (error.response){
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+        }
+        })
+        console.log("click2!")
+    };
+
+
+
+
+
+
 
     const openLeftTab = (tabName) => {
         setActiveLeftTab(tabName);
@@ -131,19 +200,29 @@ export const MainPage = () => {
                             <Goal num={3} prevGoal = {goals[2]} updateGoal = {(newgoal) => updateGoal(2,newgoal)} />  
                             <Goal num={4} prevGoal = {goals[3]} updateGoal = {(newgoal) => updateGoal(3,newgoal)} /> 
                             <Goal num={5} prevGoal = {goals[4]} updateGoal = {(newgoal) => updateGoal(4,newgoal)} /> 
+                            <Goal num={6} prevGoal = {goals[5]} updateGoal = {(newgoal) => updateGoal(5,newgoal)} /> 
+                            <Goal num={7} prevGoal = {goals[6]} updateGoal = {(newgoal) => updateGoal(6,newgoal)} /> 
+                            <Goal num={8} prevGoal = {goals[7]} updateGoal = {(newgoal) => updateGoal(7,newgoal)} /> 
+                            <Goal num={9} prevGoal = {goals[8]} updateGoal = {(newgoal) => updateGoal(8,newgoal)} /> 
+                            <Goal num={10} prevGoal = {goals[9]} updateGoal = {(newgoal) => updateGoal(9,newgoal)} /> 
+
                         
                             {goals[0]}
                             {goals[1]}
                             {goals[2]}
                             {goals[3]}
                             {goals[4]}
+                            {goals[5]}
+                            {goals[6]}
+                            {goals[7]}
+                            {goals[8]}
+                            {goals[9]}
                            
 
                     </div>
 
                     <div className='bottom'> 
-                            <   button className='saveBtn' onClick={saveGoals}  type="submit">Save</button>
-                            </div>
+                        <button className='saveBtn' onClick={saveGoals}  type="submit">Save</button></div>
 
 
 
@@ -154,11 +233,13 @@ export const MainPage = () => {
                 <div id="Tab3" className={`tabcontent ${activeLeftTab === 'Tab3' ? 'active' : ''}`}>
                     <div className='secretName'>
                                 <h4> Secret Information </h4>
-                                <textarea className='secretInput' placeholder={'The information here will not be shared to the researchers.'}></textarea>
-                                
+                            <SecretInfo prevSecret = {secrets[0]} updateSecret = {(newsecret) => updateSecret(0,newsecret)}  />  
+                            {secrets[0]}                
                             </div>
+
+                            
                         <div className='bottom'> 
-                            <button className='saveBtn' type="submit">Save</button>
+                            <button className='saveBtn' onClick={saveSecret} type="submit">Save</button>
                         </div>
 
 

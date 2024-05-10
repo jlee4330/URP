@@ -1,6 +1,6 @@
 import React from 'react'
 // import {Link} from 'react-router-dom'
-import '/Users/donggunlee/Desktop/CloneBuilder/URP/client/src/Component/login.css';
+import '../Component/login.css';
 
 
 export const LoginPage = (props) => {

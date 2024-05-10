@@ -13,6 +13,11 @@ class Goals(db.Model):
     goals = db.Column(db.JSON)
 
 
+class Secrets(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    secrets = db.Column(db.JSON)
+
+
 
 # class Note(db.Model):
 #     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy

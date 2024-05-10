@@ -5,7 +5,7 @@ from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, unset_jwt_cookies, jwt_required, JWTManager
 from datetime import datetime, timedelta, timezone
 from __init__ import create_app, db
-from models import User,Goals
+from models import User,Goals,Secrets
 from datetime import datetime
 import base64
 import json
@@ -30,6 +30,23 @@ def saveGoals():
     return {"msg":"Successfully Saved"}
 
 
+@main.route("/saveSecret",methods=['POST'])
+@cross_origin()
+
+def saveSecret():
+    params = request.get_json()
+    secrets = params['secrets']
+    print(secrets)
+    newSecrets = Secrets(secrets = secrets)
+    db.session.add(newSecrets)
+    db.session.commit()
+    return {"msg":"Successfully Saved"}
+
+
+
+
+
+
 @main.route("/getGoals",methods=['GET'])
 @cross_origin()
 
@@ -37,6 +54,17 @@ def getGoals():
     goals = Goals.query.first()
     print(type(goals))
     return{"goals":goals.goals} 
+
+
+@main.route("/getSecrets",methods=['GET'])
+@cross_origin()
+
+def getSecrets():
+    secrets = Secrets.query.first()
+    print(type(secrets))
+    return{"secrets":secrets.secrets} 
+
+
 
 
 
