@@ -5,7 +5,7 @@ from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, unset_jwt_cookies, jwt_required, JWTManager
 from datetime import datetime, timedelta, timezone
 from __init__ import create_app, db
-from models import User,Goals,Secrets
+from models import User,Goals,Secrets,Names
 from datetime import datetime
 import base64
 import json
@@ -17,9 +17,22 @@ import http.client
 main = Blueprint('main', __name__)
 
 
+
+#클라와 서버를 연결(POST) 버튼click확인을 먼저하자!
+@main.route("/saveName",methods=['POST'])
+@cross_origin()
+def saveName():
+    params = request.get_json()
+    names = params['names']
+    print(names)
+    newNames = Names(names = names)  #
+    db.session.add(newNames)         #이부분이 나중에 db에 저장시키는 코드 
+    db.session.commit()              #
+    return {"msg":"Successfully Saved"}
+
+
 @main.route("/saveGoals",methods=['POST'])
 @cross_origin()
-
 def saveGoals():
     params = request.get_json()
     goals = params['goals']
@@ -32,7 +45,6 @@ def saveGoals():
 
 @main.route("/saveSecret",methods=['POST'])
 @cross_origin()
-
 def saveSecret():
     params = request.get_json()
     secrets = params['secrets']
@@ -43,26 +55,31 @@ def saveSecret():
     return {"msg":"Successfully Saved"}
 
 
+#클라와 서버를 연결(GET) Refresh시 저장되었던 결과 db에서 가져오기
 
-
-
+@main.route("/getNames",methods=['GET'])
+@cross_origin()
+def getNames():
+    names = Names.query.first()
+    return{"names":names.names} 
 
 @main.route("/getGoals",methods=['GET'])
 @cross_origin()
-
 def getGoals():
     goals = Goals.query.first()
-    print(type(goals))
+    #print(type(goals))
     return{"goals":goals.goals} 
-
 
 @main.route("/getSecrets",methods=['GET'])
 @cross_origin()
-
 def getSecrets():
     secrets = Secrets.query.first()
-    print(type(secrets))
+    #print(type(secrets))
     return{"secrets":secrets.secrets} 
+
+
+
+
 
 
 

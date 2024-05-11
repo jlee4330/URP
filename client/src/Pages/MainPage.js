@@ -4,15 +4,80 @@ import '../Component/main.css';
 import profilePic from '../이수연.jpeg';
 import { Goal } from '../Component/Goal/Goal';
 import { SecretInfo } from '../Component/secretInfo/SecretInfo';
+import { Name } from '../Component/Name/Name';
 
 
 export const MainPage = () => {
+    
+    //탭
     const [activeLeftTab, setActiveLeftTab] = useState('Tab1');
     const [activeRightTab, setActiveRightTab] = useState('Tab4');
 
+    const openLeftTab = (tabName) => {
+        setActiveLeftTab(tabName);
+        };
+    
+    const openRightTab = (tabName) => {
+        setActiveRightTab(tabName);
+        };
 
+
+    //초기
+    const [names,setNames] = useState([""]);
     const [goals,setGoals] = useState(["","","","","","","","","",""]);
     const [secrets,setSecrets] = useState([""]);
+    
+
+
+    //업데이트
+    const updateName = (i,newname) => {
+        setNames(names => {
+                const updateNames = [...names];
+                updateNames[i] = newname;
+                return updateNames;
+        })
+    };
+
+
+    const updateGoal = (i,newgoal) => {
+        setGoals(goals => { 
+            const updateGoals = [...goals];
+            updateGoals[i] = newgoal;
+            return updateGoals;
+        })
+    };
+
+
+    const updateSecret = (i,newsecret) => {
+        setSecrets(secrets => {
+                const updateSecrets = [...secrets];
+                updateSecrets[i] = newsecret;
+                return updateSecrets;
+        })
+    };
+
+
+
+    //클라 서버 코드
+    function getNames() {
+        axios({
+            method: "GET",
+            url: "http://127.0.0.1:5000/getNames"
+        })
+        .then((response) => {
+            const res = response.data
+            setNames(
+                res.names
+            )
+        } )
+        .catch((error) => {
+        if (error.response){
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+        }
+        })
+    }
 
     function getGoals() {
         axios({
@@ -34,7 +99,6 @@ export const MainPage = () => {
         })
     }
     
-    // 데이터베이스에 저장하는 법 
     function getSecrets() {
         axios({
             method: "GET",
@@ -56,46 +120,6 @@ export const MainPage = () => {
         })
     }
 
-
-    useEffect(()=> { 
-        getGoals();
-    }, []);
-
-
-
-    useEffect(()=> { 
-        getSecrets();
-    }, []);
-
-
-    const updateGoal = (i,newgoal) => {
-        setGoals(goals => {
-            
-            const updateGoals = [...goals];
-            updateGoals[i] = newgoal;
-            return updateGoals;
-        })
-       
-    };
-
-
-    const updateSecret = (i,newsecret) => {
-        setSecrets(secrets => {
-
-                const updateSecrets = [...secrets];
-                updateSecrets[i] = newsecret;
-                return updateSecrets;
-
-        })
-    };
-
-    
-
-
-
-
-
-
 //    서버로 보내는 코드 
     function saveGoals(){
         axios({
@@ -115,7 +139,7 @@ export const MainPage = () => {
         console.log("click1!")
     };
 
-    function saveSecret(){
+    function saveSecrets(){
         axios({
             method: "POST",
             url: "http://127.0.0.1:5000/saveSecret", 
@@ -134,19 +158,41 @@ export const MainPage = () => {
         console.log("click2!")
     };
 
-
-
-
-
-
-
-    const openLeftTab = (tabName) => {
-        setActiveLeftTab(tabName);
+    function saveName(){
+        axios({
+            method: "POST",
+            url: "http://127.0.0.1:5000/saveName", 
+            // main.py에 saveName 함수를 만들어야함
+            data: {names:names},
+        })
+        .then((response) => {
+        } )
+        .catch((error) => {
+        if (error.response){
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+        }
+        })
+        console.log("click3!")
     };
-    
-    const openRightTab = (tabName) => {
-        setActiveRightTab(tabName);
-    };
+
+
+
+    //새로고침 후 db 저장된거 뜨게하는 부분
+    useEffect(()=> { 
+        getGoals();
+    }, []);
+
+    useEffect(()=> { 
+        getSecrets();
+    }, []);
+
+    useEffect(()=> { 
+        getNames();
+    }, []);
+
+
 
     return (
         <div className='mainPage'>
@@ -163,14 +209,16 @@ export const MainPage = () => {
                                 <img src={profilePic} alt="Profile" />
                             </div>
                     </div>
-
+        
                         <div className='nameTitle'>
-                                <h4>Name</h4>
-                                <input className='nameInput' placeholder={'Name your digital clone'} ></input>
+                                <h4>Name</h4> 
+                                <Name prevName={names[0]} updateName = {(newname) => updateName(0,newname)} />
+                                {names[0]}
                         </div>
 
+                        
                         <div className='bottom'> 
-                            <button className='saveBtn' type="submit">Save</button>
+                            <button className='saveBtn' onClick={saveName} type="submit">Save</button>
                         </div>
 
 
@@ -239,7 +287,7 @@ export const MainPage = () => {
 
                             
                         <div className='bottom'> 
-                            <button className='saveBtn' onClick={saveSecret} type="submit">Save</button>
+                            <button className='saveBtn' onClick={saveSecrets} type="submit">Save</button>
                         </div>
 
 
