@@ -20,7 +20,9 @@ class Secrets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     secrets = db.Column(db.JSON)
 
-
+class Instructions(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    instructions = db.Column(db.JSON)
 
 
 

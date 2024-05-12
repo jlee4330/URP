@@ -5,6 +5,8 @@ import profilePic from '../이수연.jpeg';
 import { Goal } from '../Component/Goal/Goal';
 import { SecretInfo } from '../Component/secretInfo/SecretInfo';
 import { Name } from '../Component/Name/Name';
+import { Instruction } from '../Component/Instruction/Instruction';
+
 
 
 export const MainPage = () => {
@@ -26,8 +28,8 @@ export const MainPage = () => {
     const [names,setNames] = useState([""]);
     const [goals,setGoals] = useState(["","","","","","","","","",""]);
     const [secrets,setSecrets] = useState([""]);
+    const [instructions,setInstructions] = useState([""]);
     
-
 
     //업데이트
     const updateName = (i,newname) => {
@@ -55,6 +57,15 @@ export const MainPage = () => {
                 return updateSecrets;
         })
     };
+
+    const updateInstruction = (i,newinstruction) => {
+        setInstructions(instructions => {
+                const updateInstructions = [...instructions];
+                updateInstructions[i] = newinstruction;
+                return updateInstructions;
+        })
+    };
+    
 
 
 
@@ -120,7 +131,51 @@ export const MainPage = () => {
         })
     }
 
+    function getInstructions() {
+        axios({
+            method: "GET",
+            url: "http://127.0.0.1:5000/getInstructions"
+            // getInstructions 함수를 main.py에서 만들어야돼 
+        })
+        .then((response) => {
+            const res = response.data
+            setInstructions(
+                res.instructions
+            )
+        } )
+        .catch((error) => {
+        if (error.response){
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+        }
+        })
+    }
+    
+
+    
 //    서버로 보내는 코드 
+
+
+function saveName(){
+    axios({
+        method: "POST",
+        url: "http://127.0.0.1:5000/saveName", 
+        // main.py에 saveName 함수를 만들어야함
+        data: {names:names},
+    })
+    .then((response) => {
+    } )
+    .catch((error) => {
+    if (error.response){
+        console.log(error.response)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+    }
+    })
+    console.log("click3!")
+};
+
     function saveGoals(){
         axios({
             method: "POST",
@@ -158,12 +213,12 @@ export const MainPage = () => {
         console.log("click2!")
     };
 
-    function saveName(){
+    function saveInstructions(){
         axios({
             method: "POST",
-            url: "http://127.0.0.1:5000/saveName", 
-            // main.py에 saveName 함수를 만들어야함
-            data: {names:names},
+            url: "http://127.0.0.1:5000/saveInstructions", 
+            // main.py에 saveInstructions 함수를 만들어야함
+            data: {instructions:instructions},
         })
         .then((response) => {
         } )
@@ -174,8 +229,11 @@ export const MainPage = () => {
             console.log(error.response.headers)
         }
         })
-        console.log("click3!")
+        console.log("click!")
     };
+    
+    
+
 
 
 
@@ -192,7 +250,11 @@ export const MainPage = () => {
         getNames();
     }, []);
 
+    useEffect(()=> { 
+        getInstructions();
+    }, []);
 
+    
 
     return (
         <div className='mainPage'>
@@ -226,11 +288,13 @@ export const MainPage = () => {
                         <div className='"instruction'>
                             <div className='instructionName'>
                                 <h4> Instruction </h4>
-                                <textarea className='instructionInput' placeholder={'Design your digital clone. How does it behave? What should it avoid?'}></textarea>
                                 
+                                <Instruction prevInstruction = {instructions[0]} updateInstruction = {(newinstruction) => updateInstruction(0,newinstruction)}  />
+                                {instructions[0]}
+                               
                             </div>
                         <div className='bottom'> 
-                            <button className='saveBtn' type="submit">Save</button>
+                            <button className='saveBtn' onClick={saveInstructions} type="submit">Save</button>
                         </div>
 
 

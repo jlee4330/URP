@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, current_app, redirect, url_for, request, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_cors import cross_origin
+from flask_cors import cross_origin 
 from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, unset_jwt_cookies, jwt_required, JWTManager
 from datetime import datetime, timedelta, timezone
 from __init__ import create_app, db
-from models import User,Goals,Secrets,Names
+from models import User,Goals,Secrets,Names,Instructions
 from datetime import datetime
 import base64
 import json
@@ -54,6 +54,20 @@ def saveSecret():
     db.session.commit()
     return {"msg":"Successfully Saved"}
 
+@main.route("/saveInstructions",methods=['POST'])
+@cross_origin()
+def saveInstructions():
+    params = request.get_json()
+    instructions = params['instructions']
+    print(instructions)
+    newInstructions = Instructions(instructions = instructions)
+    db.session.add(newInstructions)
+    db.session.commit()
+    return {"msg":"Successfully Saved"}
+
+
+
+
 
 #클라와 서버를 연결(GET) Refresh시 저장되었던 결과 db에서 가져오기
 
@@ -76,6 +90,17 @@ def getSecrets():
     secrets = Secrets.query.first()
     #print(type(secrets))
     return{"secrets":secrets.secrets} 
+
+
+
+@main.route("/getInstructions",methods=['GET'])
+@cross_origin()
+def getInstructions():
+    instructions = Instructions.query.first()
+    #print(type(secrets))
+    return{"instructions":instructions.instructions} 
+
+
 
 
 
@@ -219,3 +244,5 @@ app = create_app()
 if __name__ == '__main__':
     db.create_all(app=create_app())
     app.run(debug=True)
+
+
