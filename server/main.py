@@ -67,7 +67,7 @@ def saveInstructions():
 
 
 
-
+#getdata로 합치기 
 
 #클라와 서버를 연결(GET) Refresh시 저장되었던 결과 db에서 가져오기
 
@@ -91,6 +91,7 @@ def getSecrets():
     #print(type(secrets))
     return{"secrets":secrets.secrets} 
 
+#return {"goals":goals.goals,sssssss}
 
 
 @main.route("/getInstructions",methods=['GET'])

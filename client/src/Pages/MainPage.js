@@ -240,20 +240,12 @@ function saveName(){
     //새로고침 후 db 저장된거 뜨게하는 부분
     useEffect(()=> { 
         getGoals();
-    }, []);
-
-    useEffect(()=> { 
         getSecrets();
-    }, []);
-
-    useEffect(()=> { 
         getNames();
-    }, []);
-
-    useEffect(()=> { 
         getInstructions();
     }, []);
 
+    
     
 
     return (
